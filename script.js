@@ -1,6 +1,7 @@
 let firstNumber = ""
 let secondNumber = ""
 let operator = ""
+let result = ""
 let isEnteringSecondNumber = false
 
 let btnDigit = document.querySelectorAll(".digit")
@@ -56,16 +57,25 @@ buttons.addEventListener("click", (e) => {
         else {secondNumber += e.target.textContent}
     }
     else if (e.target.classList.contains("operator")) {
-        operator = e.target.textContent
+         if (firstNumber != "" && secondNumber != "" && operator != "") {
+            result = operate(firstNumber, secondNumber, operator)
+            // display.textContent = answer
+            firstNumber = String(result)
+            secondNumber = ""
+            operator = e.target.textContent
+        }
+        else {
+            operator = e.target.textContent
         isEnteringSecondNumber = true
+        }
     }
-    display.textContent = display.textContent+`${firstNumber} ${operator} ${secondNumber}`
+    display.textContent = `${firstNumber} ${operator} ${secondNumber}`
 })
 
 
 btnEqual.addEventListener("click", () => {
     display.textContent = ""
-    let result = operate(firstNumber, secondNumber, operator)
+    result = operate(firstNumber, secondNumber, operator)
     display.textContent = result
     firstNumber = result
     secondNumber = ""
