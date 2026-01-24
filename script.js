@@ -28,6 +28,8 @@ const divide = function(num1, num2) {
 }
 
 const operate = function (num1, num2, operator) {
+    num1 = Number(num1)
+    num2 = Number(num2)
     if (operator === "+") {
         return add(num1, num2)
     }
@@ -64,7 +66,7 @@ buttons.addEventListener("click", (e) => {
 btnEqual.addEventListener("click", () => {
     display.textContent = ""
     let result = operate(firstNumber, secondNumber, operator)
-    display.textContent = `${result}`
+    display.textContent = result
     firstNumber = result
     secondNumber = ""
     operator = ""
